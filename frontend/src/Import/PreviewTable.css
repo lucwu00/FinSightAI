@@ -1,0 +1,254 @@
+.preview-table-container {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+  
+.ai-check-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+.ai-check-header h2 {
+    font-size: 2rem; /* Bigger title */
+    margin-bottom: 1.2 rem;
+  }
+  
+.ai-badge {
+    background-color: #e0f7fa;
+    color: #00796b;
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+  
+  
+  .preview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .preview-table th,
+  .preview-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .warning {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .warning-icon {
+    margin-left: 6px;
+    color: #ff9800;
+  }
+
+  .warning-cell {
+    background-color: #fff3cd; /* yellow background for warnings */
+    border: 1px solid #ffcc00;
+  }
+
+  .edit-button {
+    background-color: #ffc107;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+  }
+  
+  .save-button {
+    background-color: #28a745;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  
+  .table-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  
+  .approve-button {
+    margin-top: 1rem;
+    background-color: #00796b;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 3rem;
+  }
+  
+  .row-action-buttons {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .summary-button {
+    margin-left: 10px;
+    background-color: #0d9488; /* same as Approve and Import */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+  }
+  
+  .summary-button:hover {
+    background-color: #0f766e;
+  }  
+
+  .summary-warning {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #fff8e1;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #b26a00;
+    font-weight: 500;
+  }
+  
+  .client-summary-box {
+    margin-top: 20px;
+    padding: 16px;
+    background-color: #f0f7ff;
+    border: 1px solid #90caf9;
+    border-radius: 10px;
+  }
+  
+  .client-summary-box h3 {
+    margin-bottom: 10px;
+    color: #1976d2;
+  }
+  
+  .client-summary-box ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .client-summary-box li {
+    margin-bottom: 8px;
+  }  
+
+  .edit-mode-toast {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 12px 20px;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 1rem auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeSlideIn 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .back-button {
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  
+  .back-button:hover {
+    background-color: #ddd;
+  }  
+  
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    
+  .add-button, .edit-button {
+    font-size: 0.9 rem; /* 2 steps bigger */
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* keep your existing colors */
+  .add-button {
+    background-color: white;
+    color: green;
+    border: 2px solid green !important; /* Force green border */
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Remove blue glow when clicking/focusing the button */
+  .add-button:focus,
+  .add-button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 2px solid green !important;
+  }  
+  
+  .edit-button {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+  }
+
+  .validation-error-message {
+    margin-top: 12px;
+    color: #d32f2f;
+    background-color: #f1f1ee;
+    border: 1px solid #eef5c3;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    max-width: 600px;
+  }
+  
+  
+  .approve-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  

@@ -1,0 +1,95 @@
+/* ImportSuccess.css */
+
+.import-summary-page {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .success-msg {
+    font-size: 1.25rem;
+    color: #28a745;
+    margin: 1rem 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .summary-table {
+    width: 100%;
+    margin-bottom: 2rem;
+    border-collapse: collapse;
+  }
+  
+  .summary-table td {
+    padding: 1rem;
+    font-size: 1rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .summary-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .import-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .download-btn,
+  .go-dashboard-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .download-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .download-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .go-dashboard-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .go-dashboard-btn:hover {
+    background-color: #1e7e34;
+  }
+
+  .back-button {
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  
+  .back-button:hover {
+    background-color: #ddd;
+  }
+  
+  

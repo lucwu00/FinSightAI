@@ -1,0 +1,160 @@
+/* PolicyPage.css */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  margin: 1.5rem auto 0;
+  width: 400px;
+  background-color: white;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  flex: 1;
+  margin-left: 0.5rem;
+}
+
+.search-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.add-button,
+.edit-button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.results-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.client-title-box {
+  margin: 8px 0 20px;
+  padding: 0;
+  background-color: transparent;
+  border-left: none;
+  border-radius: 0;
+}
+
+.client-title-box h2 {
+  margin: 0;
+  font-size: 1.1rem; /* down from 1.4rem */
+  font-weight: 600;
+  color: #000; /* black */
+}
+
+.policy-table {
+  width: 100%;
+  max-width: 90%;
+  border-collapse: collapse;
+  margin-bottom: 3rem;
+}
+
+.policy-table th,
+.policy-table td {
+  border: 1px solid #ccc;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.policy-table thead {
+  background-color: #f5f5f5;
+  color: #444;
+}
+
+.policy-table td:first-child {
+  font-weight: bold;
+}
+
+.policy-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.client-profile-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.client-profile-card {
+  width: 90%;
+  max-width: 500px;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 10 rem;
+}
+
+.client-profile-card h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+}
+
+.client-profile-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.client-profile-card li {
+  margin-bottom: 18px;
+  font-size: 1.1rem; /* Increased from 0.9rem */
+}
+
+.ai-ask-container {
+  margin: 30px auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+.ai-answer-box {
+  margin-top: 15px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.welcome-box {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.no-results {
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 1rem;
+  color: #888;
+}
+
+.loading-spinner {
+  font-size: 16px;
+  color: #666;
+  margin-top: 20px;
+}
+
+.ai-summary-box {
+  background-color: #f9f9f9;
+  border-left: 5px solid #fff44f;
+  padding: 12px 18px;
+  margin: 10px auto;
+  width: 80%;
+  font-size: 15px;
+  color: #333;
+}
