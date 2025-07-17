@@ -28,12 +28,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      role: {
+      status: {
         type: DataTypes.STRING,
-        defaultValue: "FA",
+        defaultValue: "User", // you can change to 'FA' if needed
       },
       layoutPreferences: {
         type: DataTypes.TEXT,
+      },
+      lastLogin: {
+        type: DataTypes.DATE,
+        allowNull: true,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -46,10 +50,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: "users",
+      timestamps: true, 
     }
   );
-  
-  // Associations
+
   User.associate = (models) => {
     User.hasMany(models.Todo, { foreignKey: 'userId' });
     User.hasMany(models.Nudge, { foreignKey: 'userId' });
