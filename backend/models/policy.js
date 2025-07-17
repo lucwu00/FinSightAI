@@ -1,20 +1,77 @@
-const mongoose = require('mongoose');
+module.exports = (sequelize, DataTypes) => {
+  const Policy = sequelize.define(
+    "Policy",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      policyName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      policyType: {
+        type: DataTypes.STRING, // e.g. "Life", "Health", "Investment"
+        allowNull: true,
+      },
+      provider: {
+        type: DataTypes.STRING, // e.g. "AXA", "Prudential"
+        allowNull: true,
+      },
+      startDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+      },
+      endDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+      },
+      premium: {
+        type: DataTypes.FLOAT,
+        allowNull: true,
+      },
+      status: {
+        type: DataTypes.STRING, // e.g. "Active", "Lapsed", "Cancelled"
+        allowNull: true,
+        defaultValue: "Active",
+      },
+      recommended: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      notes: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
 
-const policySchema = new mongoose.Schema({
-  clientName: String,
-  clientId: String,
-  policyId: String,
-  productType: String,
-  policyTypeId: String,
-  coverageAmount: Number,
-  premiumAmount: String,
-  premiumFrequency : String,
-  fundTypeILP: String,
-  startDate: Date,
-  endDate: Date,
-  status: String, 
-  occupation : String,
-  annualIncome: Number,
-});
+      // Foreign keys
+      clientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      advisorId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      tableName: "policies",
+      timestamps: true,
+    }
+  );
 
-module.exports = mongoose.model('Policy', policySchema);
+  Policy.associate = (models) => {
+    Policy.belongsTo(models.Client, {
+      foreignKey: "clientId",
+      as: "client",
+    });
+
+    Policy.belongsTo(models.User, {
+      foreignKey: "advisorId",
+      as: "advisor",
+    });
+  };
+
+  return Policy;
+};
