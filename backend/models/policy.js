@@ -1,20 +1,26 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../sequelize');
 
-const policySchema = new mongoose.Schema({
-  clientName: String,
-  clientId: String,
-  policyId: String,
-  productType: String,
-  policyTypeId: String,
-  coverageAmount: Number,
-  premiumAmount: String,
-  premiumFrequency : String,
-  fundTypeILP: String,
-  startDate: Date,
-  endDate: Date,
-  status: String, 
-  occupation : String,
-  annualIncome: Number,
+const Policy = sequelize.define('Policy', {
+  clientName: DataTypes.STRING,
+  clientId: DataTypes.STRING,
+  policyId: {
+    type: DataTypes.STRING,
+    unique: true
+  },
+  productType: DataTypes.STRING,
+  policyTypeId: DataTypes.STRING,
+  coverageAmount: DataTypes.FLOAT,
+  premiumAmount: DataTypes.FLOAT,
+  premiumFrequency: DataTypes.STRING,
+  fundTypeILP: DataTypes.STRING,
+  startDate: DataTypes.DATE,
+  endDate: DataTypes.DATE,
+  status: DataTypes.STRING,
+  occupation: DataTypes.STRING,
+  annualIncome: DataTypes.FLOAT
+}, {
+  timestamps: false
 });
 
-module.exports = mongoose.model('Policy', policySchema);
+module.exports = Policy;

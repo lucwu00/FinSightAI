@@ -34,12 +34,8 @@ exports.previewData = async (req, res) => {
 
 exports.mapHeaders = (req, res) => {
     const { headers } = req.body;
-  
-    const Policy = require('../models/policy');
-    const Client = require('../models/client');
-  
-    const policyFields = Object.keys(Policy.schema.paths).filter(f => !['_id', '__v'].includes(f));
-    const clientFields = Object.keys(Client.schema.paths).filter(f => !['_id', '__v'].includes(f));
+    const policyFields = Object.keys(Policy.getAttributes()).filter(f => f !== 'id');
+    const clientFields = Object.keys(Client.getAttributes()).filter(f => f !== 'id');
     const availableFields = [...new Set([...policyFields, ...clientFields])];
   
     const normalize = (str) => str.toLowerCase().replace(/[-_ ]/g, '');

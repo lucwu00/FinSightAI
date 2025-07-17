@@ -92,13 +92,18 @@ router.post('/client-summary', async (req, res) => {
   const prompt = `
 You are an AI assistant for a financial advisor. The following policies belong to one client.
 
-Generate a concise 3–5 point summary:
-- State the number of distinct product types (e.g., Whole Life, ILP, Travel).
-- Highlight if there are duplicate or overlapping policies (same product type).
-- Mention any expired or soon-to-expire policies.
-- Keep it professional and advisor-friendly.
+Summarize the policies in 4–5 bullet points.
 
-You may use the AI-generated notes:
+📌 FORMAT STRICTLY AS:
+• Start with total number of distinct product types.
+• Mention if there are duplicate or overlapping product types.
+• Highlight any expired or expiring policies.
+• Optionally include observations about gaps or risks.
+
+Use plain bullet points (•), one per line. No numbering or HTML.
+Avoid any other formatting or commentary.
+
+AI-generated notes:
 - ${notes}
 
 Policies:

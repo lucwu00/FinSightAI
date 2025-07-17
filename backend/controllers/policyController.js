@@ -1,4 +1,5 @@
 const Policy = require('../models/policy');
+const { Op } = require('sequelize');
 
 exports.createPolicy = async (req, res) => {
   try {
@@ -15,7 +16,7 @@ exports.getAllPolicies = async (req, res) => {
   console.log("📥 Incoming GET /api/policies");
 
   try {
-    const policies = await Policy.find();
+    const policies = await Policy.findAll();
     console.log("📦 Fetched policies:", JSON.stringify(policies, null, 2));
     res.json(policies);
   } catch (err) {
@@ -26,7 +27,8 @@ exports.getAllPolicies = async (req, res) => {
 
 exports.updatePolicy = async (req, res) => {
   try {
-    const updated = await Policy.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    await Policy.update(req.body, { where: { id: req.params.id } });
+    const updated = await Policy.findByPk(req.params.id); // fetch updated version
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -35,7 +37,7 @@ exports.updatePolicy = async (req, res) => {
 
 exports.deletePolicy = async (req, res) => {
   try {
-    await Policy.findByIdAndDelete(req.params.id);
+    await Policy.destroy({ where: { id: req.params.id } });
     res.json({ message: 'Policy deleted' });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -44,7 +46,7 @@ exports.deletePolicy = async (req, res) => {
 
 exports.getPolicySummary = async (req, res) => {
   try {
-    const policies = await Policy.find();
+    const policies = await Policy.findAll();
     const summary = await generateSummary(policies);
     res.json({ summary });
   } catch (err) {
@@ -55,7 +57,7 @@ exports.getPolicySummary = async (req, res) => {
 
 exports.getCommonCoverageTypes = async (req, res) => {
   try {
-    const policies = await Policy.find();
+    const policies = await Policy.findAll();
 
     const typeCounts = policies.reduce((acc, policy) => {
       const type = policy.coverageType || 'Unknown';
@@ -88,8 +90,13 @@ exports.findClientsWithExpiringPolicies = async (req, res) => {
     const threeMonthsLater = new Date();
     threeMonthsLater.setMonth(now.getMonth() + 3);
 
-    const policies = await Policy.find({
-      endDate: { $lte: threeMonthsLater, $gte: now }
+    const policies = await Policy.findAll({
+      where: {
+        endDate: {
+          [Op.lte]: threeMonthsLater,
+          [Op.gte]: now
+        }
+      }
     });
 
     const clientMap = {};
@@ -114,7 +121,7 @@ exports.findClientsWithExpiringPolicies = async (req, res) => {
 
 exports.getIncompletePolicies = async (req, res) => {
   try {
-    const policies = await Policy.find();
+    const policies = await Policy.findAll();
     const incomplete = policies.filter(p =>
       !p.policyId || !p.clientId || !p.holderName || !p.coverageType ||
       !p.coverageAmount || !p.startDate || !p.endDate || !p.status
@@ -125,6 +132,7 @@ exports.getIncompletePolicies = async (req, res) => {
   }
 };
 
+
 exports.getCustomPolicySummary = async (req, res) => {
   const { question, searchTerm } = req.body;
 
@@ -132,19 +140,17 @@ exports.getCustomPolicySummary = async (req, res) => {
     const query = {};
 
     if (searchTerm && searchTerm.trim() !== '') {
-      const regex = new RegExp(searchTerm, 'i');
-      query.$or = [
+      const regex = { [Op.like]: `%${searchTerm}%` };
+      query[Op.or] = [
         { holderName: regex },
         { clientId: regex },
         { policyId: regex }
       ];
     }
 
-    const policies = await Policy.find(query);
+    const policies = await Policy.findAll({ where: query });
 
-    
     const safeChunk = policies.slice(0, 100); 
-
     const summary = await generateSummary(safeChunk);
 
     res.json({
@@ -157,11 +163,12 @@ exports.getCustomPolicySummary = async (req, res) => {
   }
 };
 
+
 exports.getPoliciesByClientId = async (req, res) => {
   try {
     console.log("🧠 getPoliciesByClientId called for:", req.params.clientId);
     const clientId = req.params.clientId.toUpperCase();
-    const policies = await Policy.find({ clientId });
+    const policies = await Policy.findAll({ where: { clientId } });
     // Remove 404 to avoid Axios catching it
     res.json(policies); // will return [] if not found
   } catch (err) {

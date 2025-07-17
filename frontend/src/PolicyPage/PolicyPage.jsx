@@ -236,84 +236,109 @@ const recommendationRes = await axios.post('http://localhost:5050/api/genai/reco
           )}
 
           {aiSummary && (
-            <div className="ai-summary-box">
-              ✨ <strong>AI Summary:</strong>
-              <ul style={{ marginTop: '10px', paddingLeft: '20px', textAlign: 'left' }}>
-                {aiSummary
-                  .split(/\d+\.\s|\n•\s*/g)
-                  .filter(line => line && line.trim() !== '')
-                  .slice(0, -1)
-                  .map((point, index) => (
-                    <li key={index} style={{ marginBottom: '8px' }}>
-                      <span
-  dangerouslySetInnerHTML={{
-    __html: point
-      .replace(
-        /\b(has )?(expired|expiring|missing|not covered|will expire)([^.,;]*)?/gi,
-        (match) => `<strong style="color: red; font-weight: bold;">${match.trim()}</strong>`
-      )
-      .replace(
-        /(no duplicates?|duplicates?[^.]*)/gi,
-        '<u style="text-decoration: underline; color: black;">$1</u>'
-      )
-  }}
-/>
-                    </li>
-                  ))}
-                <li style={{ marginBottom: '8px' }}>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: `
-                  There are <strong style="color: red; font-weight: bold;">${expiredPolicies.length}</strong> expired policies: 
-                  <em>${expiredPolicies.map(p => p.productType).join(', ') || 'None'}</em>.<br/>
-                  There are <strong style="color: red; font-weight: bold;">${expiringSoonPolicies.length}</strong> expiring policies: 
-                  <em>${expiringSoonPolicies.map(p => p.productType).join(', ') || 'None'}</em>.
-                `,
-                    }}
-                  />
-                </li>
-              </ul>
-              {aiRecommendation && (
-  <div
-    style={{
-      marginTop: '20px',
-      backgroundColor: '#fffef5',
-      border: '1px solid #f0fc0b',
-      borderRadius: '12px',
-      padding: '15px 20px',
-      fontSize: '15px',
-      lineHeight: '1.6',
-      color: '#444',
-      boxShadow: '0 1px 5px rgba(0, 0, 0, 0.05)',
-    }}
-  >
-    <div style={{ fontWeight: 'bold', marginBottom: '10px', fontSize: '16px' }}>🧠 AI Recommendation:</div>
-    <div
-      dangerouslySetInnerHTML={{
-        __html: (
-          aiRecommendation
-            .split(/\n|\*/)
-            .filter(line => line && line.trim() !== '-' && line.trim() !== '')
-            .map(line =>
-              line
-              .replace(
-                new RegExp(`\\b(${policyNamesPattern})\\b`, 'gi'),
-                '<strong style="color: #1a73e8; font-weight: bold;">$1</strong>'
+  <div className="ai-summary-box">
+    ✨ <strong>AI Summary:</strong>
+    <ul style={{ marginTop: '10px', paddingLeft: '20px', textAlign: 'left' }}>
+      {aiSummary
+        .split(/\d+\.\s|\n•\s*/g)
+        .filter(line => line && line.trim() !== '')
+        .slice(0, -1)
+        .map((point, index) => (
+          <li key={index} style={{ marginBottom: '8px' }}>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: point
+                  .replace(
+                    /\b(has )?(expired|expiring|will expire|missing|not covered)([^.,;]*)?/gi,
+                    match =>
+                      `<strong style="color: red; font-weight: bold;">${match.trim()}</strong>`
+                  )
+                  .replace(
+                    /(no duplicates?|duplicates?[^.]*)/gi,
+                    '<u style="text-decoration: underline; color: black;">$1</u>'
+                  )
+              }}
+            />
+          </li>
+        ))}
+      <li style={{ marginBottom: '8px' }}>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: `
+              There are <strong style="color: red; font-weight: bold;">${expiredPolicies.length}</strong> expired policies: 
+              <em>${expiredPolicies.map(p => p.productType).join(', ') || 'None'}</em>.<br/>
+              There are <strong style="color: red; font-weight: bold;">${expiringSoonPolicies.length}</strong> expiring policies: 
+              <em>${expiringSoonPolicies.map(p => p.productType).join(', ') || 'None'}</em>.
+            `
+          }}
+        />
+      </li>
+    </ul>
+
+    {/* 🧠 AI Recommendation */}
+    {aiRecommendation && (
+      <div
+        style={{
+          marginTop: '20px',
+          backgroundColor: '#fffef5',
+          border: '1px solid #f0fc0b',
+          borderRadius: '12px',
+          padding: '15px 20px',
+          fontSize: '15px',
+          lineHeight: '1.6',
+          color: '#444',
+          boxShadow: '0 1px 5px rgba(0, 0, 0, 0.05)',
+        }}
+      >
+        <div style={{ fontWeight: 'bold', marginBottom: '10px', fontSize: '16px' }}>🧠 AI Recommendation:</div>
+        <div className="policy-recommendation">
+          <ol style={{ paddingLeft: '20px' }}>
+            {aiRecommendation
+              .split(/\n|\*/)
+              .map(line => line.trim())
+              .filter(line =>
+                line !== '' &&
+                !/^\d+[\.\)]\s*$/.test(line) &&
+                line !== '-' && line !== '–'
               )
-              .replace(
-                /\b(has )?(expired|expiring|missing|not covered|will expire)( [^.,;]*)?/gi,
-                (match) => `<strong style="color: red; font-weight: bold;">${match}</strong>`
-              )                         
-            )
-            .join('<br/>')
-        ),
-      }}
-    />
+              .map((line, index) => {
+                // Clean dashes/numbering
+                const cleanedLine = line.replace(/^\s*[-–•]?\s*/, '').replace(/^\d+[\.\)]\s*/, '');
+
+                // Split into title and body
+                const [titleRaw, ...rest] = cleanedLine.split(':');
+                const body = rest.join(':').trim();
+
+                // Policy name highlight in blue
+                const styledTitle = titleRaw.replace(
+                  new RegExp(`\\b(${policyNamesPattern})\\b`, 'gi'),
+                  '<strong style="color: #1a73e8; font-weight: bold;">$1</strong>'
+                );
+
+                // Red highlight for missing/expired/etc
+                const styledBody = body.replace(
+                  /\b(has )?(expired|expiring|missing|not covered|will expire)([^.,;]*)?/gi,
+                  match =>
+                    `<strong style="color: red; font-weight: bold;">${match.trim()}</strong>`
+                );
+
+                return (
+                  <li key={index} style={{ marginBottom: '10px' }}>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: `${styledTitle}${body ? '<br/>' + styledBody : ''}`
+                      }}
+                    />
+                  </li>
+                );
+              })}
+          </ol>
+        </div>
+      </div>
+    )}
   </div>
 )}
 
-            </div>
-          )}
 
             
         
@@ -328,6 +353,7 @@ const recommendationRes = await axios.post('http://localhost:5050/api/genai/reco
               <th>Product Type</th>
               <th>Policy Type ID</th>
               <th>Coverage Amount</th>
+              <th>Premium Amount</th>
               <th>Premium Frequency</th>
               <th>Fund Type for ILP</th>
               <th>Start Date</th>
@@ -342,6 +368,7 @@ const recommendationRes = await axios.post('http://localhost:5050/api/genai/reco
                 <td>{policy.productType || '-'}</td>
                 <td>{policy.policyTypeId || '-'}</td>
                 <td>${policy.coverageAmount?.toLocaleString() || '-'}</td>
+                <td>${policy.premiumAmount?.toLocaleString() || '-'}</td> 
                 <td>{policy.premiumFrequency || '-'}</td>
                 <td>
                   {policy.productType === 'Investment-Linked'

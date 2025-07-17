@@ -158,3 +158,13 @@
   font-size: 15px;
   color: #333;
 }
+
+.policy-recommendation ol {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.policy-recommendation li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
