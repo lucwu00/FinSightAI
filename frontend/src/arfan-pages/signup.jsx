@@ -110,7 +110,7 @@ function SignUp() {
         <Divider sx={{ my: 2 }} />
         <Box textAlign="center">
           <Typography variant="body2">Have an account?</Typography>
-          <Link component={RouterLink} to="/Login" variant="body2">
+          <Link component={RouterLink} to="/login" variant="body2">
             Sign in here!
           </Link>
         </Box>

@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
-import Sidebar from '../components/sidebar';
-import Header from '../components/header';
+import Sidebar from '../arfan-components/sidebar';
+import Header from '../arfan-components/header';
 import { Box, Button } from '@mui/material';
-import DataTable from "../components/dataTable";
-import StatsCard from "../components/statsCard";
-import AccountSettings from "../components/accountSettings";
-import DataPrivacyContent from "../components/DataPrivacy";
-import ClientList from "../components/clientlist";
-import AIAnalytics from "../components/AIAnalytics";
+import DataTable from "../arfan-components/dataTable";
+import StatsCard from "../arfan-components/statsCard";
+import AccountSettings from "../arfan-components/accountSettings";
+import DataPrivacyContent from "../arfan-components/DataPrivacy";
+import ClientList from "../arfan-components/clientlist";
+import AIAnalytics from "../arfan-components/AIAnalytics";
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 
 function UserManagement() {

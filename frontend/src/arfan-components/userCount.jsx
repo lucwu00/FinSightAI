@@ -1,12 +1,12 @@
 // userManagement.jsx
 import React, { useState, useEffect } from 'react';
 import { Box, Container, Button } from '@mui/material';
-import Sidebar from '../components/sidebar';
-import Header from '../components/header';
-import StatsCard from '../components/statsCard';
+import Sidebar from './sidebar';
+import Header from './header';
+import StatsCard from './statsCard';
 import DeleteIcon from '@mui/icons-material/Delete';
-import DataTable from '../components/dataTable'; // Import the DataTable component
-import AIAnalytics from '../components/AIAnalytics'; // Import the AI Analytics component
+import DataTable from './dataTable'; // Import the DataTable component
+import AIAnalytics from './AIAnalytics'; // Import the AI Analytics component
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 
 export default function Dashboard() {

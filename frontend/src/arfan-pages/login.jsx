@@ -16,9 +16,7 @@ import {
 import {
   Visibility,
   VisibilityOff
-} 
-
-from '@mui/icons-material';
+} from '@mui/icons-material';
 import { useNavigate, Link as RouterLink } from 'react-router-dom'; // <-- Add this import
 
 export default function Login() {
@@ -57,7 +55,7 @@ export default function Login() {
         data = JSON.parse(text);
       }
 
-      console.log(data); // Debug: see what you get
+      console.log(data);
 
       if (response.ok && data.username) {
         localStorage.setItem('username', data.username);
@@ -230,7 +228,7 @@ export default function Login() {
           >
             Don't have an account?{' '}
             <RouterLink
-              to="/SignUp"
+              to="/signup"
               style={{
                 color: '#1976d2',
                 textDecoration: 'none',

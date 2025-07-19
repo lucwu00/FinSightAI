@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '../components/sidebar';
-import SettingsSidebar from '../components/settingsSidebar';
+import Sidebar from '../arfan-components/sidebar';
+import SettingsSidebar from '../arfan-components/settingsSidebar';
 import { Box } from '@mui/material';
 
 export default function SettingsPage() {

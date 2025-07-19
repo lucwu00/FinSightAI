@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
-import StatusBadge from './StatusBadge';
+import StatusBadge from './statusBadge';
 
 export default function DataTable({ data, onDelete, onStatusChange }) {
   const [anchorEl, setAnchorEl] = useState(null);
