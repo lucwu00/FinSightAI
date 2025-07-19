@@ -251,7 +251,6 @@ export default function AIAnalytics({ open, onClose, userData }) {
         }
       } catch (parseError) {
         console.error('JSON parsing error:', parseError);
-        console.log('Raw AI response:', data.reply);
         
         // Return a fallback structured response based on the data
         const fallbackRecommendations = generateFallbackRecommendations(analysis);

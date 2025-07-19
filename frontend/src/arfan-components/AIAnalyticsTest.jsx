@@ -24,7 +24,6 @@ export default function AIAnalyticsTest({ open, onClose, userData }) {
     // Simple test without charts
     setTimeout(() => {
       setLoading(false);
-      console.log('User data:', userData);
       alert(`Analysis complete! Found ${userData.length} users.`);
     }, 1000);
   };

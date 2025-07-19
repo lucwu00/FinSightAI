@@ -13,12 +13,30 @@ export default function Dashboard() {
   const [activeItem, setActiveItem] = useState('Dashboard');
   const [userData, setUserData] = useState([]);
   const [aiAnalyticsOpen, setAiAnalyticsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch('/api/userManagement')
-      .then(res => res.json())
-      .then(data => setUserData(data))
-      .catch(err => console.error('Failed to fetch users:', err));
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        return res.json();
+      })
+      .then(data => {
+        setUserData(data);
+        setError(null);
+      })
+      .catch(err => {
+        console.error('Failed to fetch users:', err);
+        setError('Failed to load user data');
+        setUserData([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const handleDelete = async (userId) => {
@@ -46,10 +64,24 @@ export default function Dashboard() {
       }}>
         <Header />
         <Container sx={{ mt: 4 }}>
-          <Box sx={{ display: 'flex', gap: 2, mb: 4, alignItems: 'center' }}>
-            <StatsCard 
-              number={userData.length} 
-              label="Total Users" 
+          {loading && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+              <Typography>Loading users...</Typography>
+            </Box>
+          )}
+          
+          {error && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+              <Typography color="error">{error}</Typography>
+            </Box>
+          )}
+          
+          {!loading && !error && (
+            <>
+              <Box sx={{ display: 'flex', gap: 2, mb: 4, alignItems: 'center' }}>
+                <StatsCard 
+                  number={userData.length} 
+                  label="Total Users" 
               change="+ 66% vs previous month" 
             />
             <Button
@@ -70,6 +102,8 @@ export default function Dashboard() {
             onClose={() => setAiAnalyticsOpen(false)}
             userData={userData}
           />
+            </>
+          )}
         </Container>
       </Box>
     </Box>

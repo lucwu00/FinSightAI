@@ -26,8 +26,21 @@ function SignUp() {
       return;
     }
 
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Basic password validation
+    if (form.password.length < 6) {
+      alert('Password must be at least 6 characters long.');
+      return;
+    }
+
     try {
-      const response = await fetch('/api/SignUp', {
+      const response = await fetch('/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

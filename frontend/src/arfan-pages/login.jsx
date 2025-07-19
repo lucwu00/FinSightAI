@@ -55,8 +55,6 @@ export default function Login() {
         data = JSON.parse(text);
       }
 
-      console.log(data);
-
       if (response.ok && data.username) {
         localStorage.setItem('username', data.username);
         localStorage.setItem('email', data.email);
@@ -64,7 +62,6 @@ export default function Login() {
         navigate('/userManagement');
       } else {
         alert(data.error || 'Login failed');
-        console.log("Has error")
       }
     } catch (err) {
       alert('Network error');
