@@ -1,8 +1,8 @@
-const Client = require('../models/client');
+const { Client } = require('../models');
 
 exports.getAllClients = async (req, res) => {
   try {
-    const clients = await Client.find();
+    const clients = await Client.findAll();
     res.json(clients);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch clients' });
@@ -11,8 +11,7 @@ exports.getAllClients = async (req, res) => {
 
 exports.createClient = async (req, res) => {
   try {
-    const newClient = new Client(req.body);
-    await newClient.save();
+    const newClient = await Client.create(req.body);
     res.status(201).json(newClient);
   } catch (err) {
     res.status(400).json({ error: err.message });

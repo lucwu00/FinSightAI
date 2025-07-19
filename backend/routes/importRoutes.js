@@ -9,8 +9,7 @@ const { Parser } = require('json2csv');
 const importController = require('../controllers/importController');
 const { autoMapPolicyType, deriveStatus, generateNoteAI } = require('../utils/dataCleaner');
 const { analyzeDataQuality } = require('../utils/dataValidator');
-const Client = require('../models/client');
-const Policy = require('../models/policy');
+const { Client, Policy } = require('../models');
 
 
 const upload = multer({ dest: 'uploads/' });

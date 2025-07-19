@@ -1,8 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-
+const db = require('./models')
 const app = express();
 
 // ✅ Middleware
@@ -24,15 +23,13 @@ app.use('/api/clients', clientRoutes);       // e.g., /api/clients/:id
 app.use('/api/import', importRoutes);        // e.g., /api/import/preview
 app.use('/api/genai', genAIRoutes);          // e.g., /api/genai/client-summary, /custom, etc.
 
-// ✅ MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
+db.sequelize.sync({ force: false })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to SQLite database');
     const PORT = process.env.PORT || 5050;
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
     });
   })
-  .catch(err => console.error('❌ MongoDB connection error:', err));
-
+  .catch(err => console.error('❌ SQLite connection error:', err));
   

@@ -1,7 +1,6 @@
 const path = require('path');
 const { parseExcel, applyMapping, validateRow } = require('../utils/excelParser');
-const Policy = require('../models/policy');
-const Client = require('../models/client');
+const { Policy, Client } = require('../models');
 
 exports.previewData = async (req, res) => {
   try {
@@ -35,11 +34,8 @@ exports.previewData = async (req, res) => {
 exports.mapHeaders = (req, res) => {
     const { headers } = req.body;
   
-    const Policy = require('../models/policy');
-    const Client = require('../models/client');
-  
-    const policyFields = Object.keys(Policy.schema.paths).filter(f => !['_id', '__v'].includes(f));
-    const clientFields = Object.keys(Client.schema.paths).filter(f => !['_id', '__v'].includes(f));
+    const policyFields = Object.keys(Policy.rawAttributes);
+    const clientFields = Object.keys(Client.rawAttributes);
     const availableFields = [...new Set([...policyFields, ...clientFields])];
   
     const normalize = (str) => str.toLowerCase().replace(/[-_ ]/g, '');

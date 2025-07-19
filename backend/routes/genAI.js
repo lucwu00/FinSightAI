@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Policy = require('../models/policy');
+const { Policy } = require('../models');
 const multer = require('multer');
 const xlsx = require('xlsx');
 const openai = require('../openaiClient'); // ✅ Use OpenAI client
@@ -16,7 +16,7 @@ const availableFields = [
 
 router.get('/common-types', async (req, res) => {
   try {
-    const allPolicies = await Policy.find();
+    const allPolicies = await Policy.findAll();
     const counts = {};
 
     allPolicies.forEach(p => {
@@ -45,7 +45,7 @@ router.post('/custom', async (req, res) => {
   if (!question) return res.status(400).json({ error: 'No question provided' });
 
   try {
-    const policies = await Policy.find();
+    const policies = await Policy.findAll();
     const context = JSON.stringify(policies.map(p => ({
       clientName: p.clientName,
       policyType: p.coverageType,
