@@ -1,0 +1,367 @@
+/* ── Base page shell ─────────────────────────────────────────────────────── */
+.policy-page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 2rem 2rem 4rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Page header (before search) ─────────────────────────────────────────── */
+.policy-page-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.policy-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.policy-subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ── Search card ─────────────────────────────────────────────────────────── */
+.policy-search-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  margin-bottom: 1.5rem;
+}
+
+.search-input-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-input-container input {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  color: #111827;
+  background: #f9fafb;
+}
+
+.search-input-container input:focus {
+  border-color: #ec4899;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.search-input-container button {
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.search-input-container button:hover {
+  background: #db2777;
+  transform: translateY(-1px);
+}
+
+/* ── Content wrapper (after search) ─────────────────────────────────────── */
+.policy-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Client title bar ────────────────────────────────────────────────────── */
+.client-title-box {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.client-title-box h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ── Action buttons ──────────────────────────────────────────────────────── */
+.search-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.add-button,
+.edit-button {
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.18s;
+}
+
+.add-button {
+  background: #10b981;
+  color: white;
+}
+
+.add-button:hover {
+  background: #059669;
+}
+
+.edit-button {
+  background: #ec4899;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #db2777;
+}
+
+/* ── Edit mode toast ─────────────────────────────────────────────────────── */
+.edit-mode-toast {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ── AI summary card ─────────────────────────────────────────────────────── */
+.ai-summary-box {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #fbbf24;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.9rem;
+  color: #374151;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.ai-summary-box ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.ai-summary-box li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.linkish {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* ── Policy table card ───────────────────────────────────────────────────── */
+.preview-table-container {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 99px;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.preview-table th {
+  background: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.preview-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.preview-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.preview-table tbody tr:hover {
+  background: #fdf2f8;
+}
+
+/* ── Row flash highlight ─────────────────────────────────────────────────── */
+.preview-table tr.row-flash td {
+  animation: row-flash 1.6s ease-out;
+}
+
+@keyframes row-flash {
+  0%, 20% { background-color: #fef9c3; }
+  100%     { background-color: transparent; }
+}
+
+/* ── Client profile card ─────────────────────────────────────────────────── */
+.client-profile-container {
+  width: 100%;
+}
+
+.client-profile-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.client-profile-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.client-profile-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.client-profile-card li {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  font-size: 0.875rem;
+  color: #374151;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.client-profile-card li:last-child {
+  border-bottom: none;
+}
+
+.client-profile-card li strong {
+  color: #6b7280;
+  font-weight: 500;
+  min-width: 130px;
+  flex-shrink: 0;
+}
+
+/* ── Loading & empty states ──────────────────────────────────────────────── */
+.loading-spinner {
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.9rem;
+  padding: 3rem 1rem;
+}
+
+.no-results {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* ── Fallback warning ────────────────────────────────────────────────────── */
+.fallback-warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  color: #92400e;
+  margin-top: 0.75rem;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .policy-page {
+    padding: 1rem 1rem 3rem;
+  }
+
+  .policy-search-card {
+    padding: 1.25rem;
+  }
+
+  .client-profile-card {
+    padding: 1.25rem;
+  }
+
+  .client-profile-card li {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .client-title-box {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+}

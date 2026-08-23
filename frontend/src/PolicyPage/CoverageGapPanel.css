@@ -1,0 +1,353 @@
+/* ── Panel shell ──────────────────────────────────────────────────────────── */
+.cgp-panel {
+  width: 100%;
+  max-width: 1100px;
+  box-sizing: border-box;
+  margin: 0 auto 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.cgp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.cgp-title-block {
+  flex: 1;
+}
+
+.cgp-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+
+.cgp-client-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.cgp-meta-pill {
+  display: inline-block;
+  background: #f3f4f6;
+  color: #374151;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+}
+
+/* ── Overall score dial ───────────────────────────────────────────────────── */
+.cgp-score-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 130px;
+}
+
+.cgp-score-svg {
+  width: 130px;
+  height: 80px;
+  overflow: visible;
+}
+
+.cgp-score-pct {
+  font-size: 14px;
+  font-weight: 700;
+  fill: #111827;
+}
+
+.cgp-score-label {
+  font-size: 7px;
+  fill: #6b7280;
+  font-weight: 500;
+}
+
+.cgp-score-caption {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  margin: 0.3rem 0 0;
+  text-align: center;
+  max-width: 130px;
+}
+
+/* ── Category cards grid ──────────────────────────────────────────────────── */
+.cgp-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Individual category card ─────────────────────────────────────────────── */
+.cgp-cat-card {
+  background: var(--accent-bg, #f9fafb);
+  border: 1.5px solid color-mix(in srgb, var(--accent, #6b7280) 25%, transparent);
+  border-radius: 10px;
+  padding: 0.85rem;
+  transition: box-shadow 0.18s;
+}
+
+.cgp-cat-card:hover {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cgp-cat-missing {
+  border-color: #fca5a5;
+  background: #fff5f5;
+}
+
+.cgp-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cgp-cat-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.cgp-cat-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cgp-cat-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cgp-cat-desc {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 1px;
+}
+
+.cgp-cat-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.cgp-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.cgp-badge-missing {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.cgp-expand-icon {
+  font-size: 0.65rem;
+  color: #9ca3af;
+}
+
+/* ── Meter bar ────────────────────────────────────────────────────────────── */
+.cgp-cat-meter {
+  margin-top: 0.65rem;
+}
+
+.cgp-meter-track {
+  height: 7px;
+  background: #e5e7eb;
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cgp-meter-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cgp-meter-overflow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.6) 2px,
+    rgba(255,255,255,0.6) 4px
+  );
+}
+
+.cgp-meter-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+}
+
+.cgp-meter-bench {
+  color: #9ca3af;
+  font-size: 0.7rem;
+}
+
+/* ── Expanded detail ──────────────────────────────────────────────────────── */
+.cgp-cat-detail {
+  margin-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.75rem;
+}
+
+.cgp-missing-msg {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+  font-style: italic;
+}
+
+.cgp-policy-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.cgp-policy-mini-table th {
+  text-align: left;
+  color: #6b7280;
+  font-weight: 600;
+  padding: 4px 6px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.cgp-policy-mini-table td {
+  padding: 5px 6px;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.cgp-policy-mini-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Status pills inside table ────────────────────────────────────────────── */
+.cgp-status-pill {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.cgp-status-pill.active       { background: #dcfce7; color: #15803d; }
+.cgp-status-pill.expiring-soon { background: #fef9c3; color: #854d0e; }
+.cgp-status-pill.expired      { background: #fee2e2; color: #dc2626; }
+.cgp-status-pill.inactive     { background: #f3f4f6; color: #6b7280; }
+
+/* ── AI section ───────────────────────────────────────────────────────────── */
+.cgp-ai-section {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+}
+
+.cgp-ai-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cgp-ai-text {
+  font-size: 0.87rem;
+  color: #334155;
+  line-height: 1.7;
+}
+
+.cgp-ai-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.cgp-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #e5e7eb;
+  border-top-color: #6b7280;
+  border-radius: 50%;
+  animation: cgp-spin 0.7s linear infinite;
+}
+
+@keyframes cgp-spin {
+  to { transform: rotate(360deg); }
+}
+
+.cgp-ai-error {
+  font-size: 0.82rem;
+  color: #ef4444;
+  font-style: italic;
+}
+
+.cgp-ai-empty {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* ── No income fallback ───────────────────────────────────────────────────── */
+.cgp-no-income {
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cgp-categories {
+    grid-template-columns: 1fr;
+  }
+  .cgp-header {
+    flex-direction: column;
+  }
+  .cgp-score-block {
+    align-self: center;
+  }
+}
