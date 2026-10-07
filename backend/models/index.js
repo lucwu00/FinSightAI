@@ -7,10 +7,13 @@ const basename = path.basename(__filename);
 const db = {};
 require('dotenv').config();
 // Create sequelize instance using config
+// SQLite file location (DB_FILE). Make sure its folder exists, e.g. a mounted volume on Railway.
+const dbFile = process.env.DB_FILE || path.join(__dirname, '..', 'data', 'database.sqlite');
+fs.mkdirSync(path.dirname(dbFile), { recursive: true });
 let sequelize = new Sequelize(
     {
         dialect: 'sqlite',
-        storage: process.env.DB_FILE
+        storage: dbFile
     }
 );
 fs

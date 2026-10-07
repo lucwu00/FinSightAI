@@ -5,24 +5,19 @@ require('dotenv').config({ path: '.env.development' }); // Keep this line
 const db = require('./models')
 const app = express();
 
-// ✅ Updated CORS Middleware
+// CORS: local dev origins plus any deployed frontends listed in CLIENT_URL (comma-separated)
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:5173',
+  ...(process.env.CLIENT_URL || '').split(',').map(s => s.trim()).filter(Boolean),
+];
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: (origin, cb) => cb(null, !origin || allowedOrigins.includes(origin)),
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true
 }));
-
-// Handle preflight requests
-app.use((req, res, next) => {
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    return res.sendStatus(200);
-  }
-  next();
-});
 
 app.use(express.json({ limit: '50mb' }));
 
