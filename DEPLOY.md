@@ -12,7 +12,7 @@ Frontend on **Vercel**, backend + SQLite database on **Railway**.
    - `GEMINI_API_KEY` = your key (and `OPENAI_API_KEY` / AWS keys if you use those features)
    - `CLIENT_URL` = your Vercel URL (optional; only needed if the frontend calls the backend directly)
 5. **Networking → Generate Domain**. Copy it, e.g. `https://finsightai-backend.up.railway.app`.
-6. Seed demo data once: open the service shell (or `railway run`) and run `node all_in_one_seed.js`.
+6. Demo data is seeded automatically on every start (`npm start` runs `all_in_one_seed.js` first), so clients and policies reset to the sample set after each deploy or restart. Login: `admin@example.com` / `adminpassword`.
 
 ## 2. Frontend (Vercel)
 
