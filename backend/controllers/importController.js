@@ -57,7 +57,7 @@ exports.mapHeaders = async (req, res) => {
     require('dotenv').config({ path: require('path').resolve(__dirname, '../.env.development') });
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-2.5-flash' });
 
     const prompt = `You are a data mapping assistant for an insurance CRM system.
 

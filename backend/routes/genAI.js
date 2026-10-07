@@ -12,7 +12,7 @@ const openai = useOpenAI ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : 
 
 const useGemini = !!process.env.GEMINI_API_KEY;
 const genAI = useGemini ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY) : null;
-const geminiModel = useGemini ? genAI.getGenerativeModel({ model: 'gemini-1.5-flash' }) : null;
+const geminiModel = useGemini ? genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-2.5-flash' }) : null;
 
 
 async function llmText(prompt, { temperature = 0.3 } = {}) {

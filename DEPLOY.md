@@ -9,7 +9,7 @@ Frontend on **Vercel**, backend + SQLite database on **Railway**.
 3. **Volumes → Add volume**, mount path `/data` (keeps the database between deploys).
 4. **Variables**:
    - `DB_FILE` = `/data/database.sqlite`
-   - `GEMINI_API_KEY` = your key (and `OPENAI_API_KEY` / AWS keys if you use those features)
+   - `GEMINI_API_KEY` = a free key from https://aistudio.google.com/apikey (powers the AI summaries and chat; optional `GEMINI_MODEL`, default `gemini-2.5-flash`)
    - `CLIENT_URL` = your Vercel URL (optional; only needed if the frontend calls the backend directly)
 5. **Networking → Generate Domain**. Copy it, e.g. `https://finsightai-backend.up.railway.app`.
 6. Demo data is seeded automatically on every start (`npm start` runs `all_in_one_seed.js` first), so clients and policies reset to the sample set after each deploy or restart. Login: `admin@example.com` / `adminpassword`.
