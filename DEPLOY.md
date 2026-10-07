@@ -16,7 +16,7 @@ Frontend on **Vercel**, backend + SQLite database on **Railway**.
 
 ## 2. Frontend (Vercel)
 
-1. In `frontend/vercel.json`, replace `YOUR-BACKEND.up.railway.app` with the Railway domain from step 5. Commit and push.
+1. In `frontend/vercel.json`, the Railway domain is already set to `finsightai-production-33d3.up.railway.app` (change it there if the backend domain changes).
 2. vercel.com → Add New Project → import `FinSightAI`.
 3. **Root Directory**: `frontend`. Framework: Vite (auto-detected).
 4. Leave `VITE_API_BASE_URL` **empty**. Vercel forwards every `/api/...` request to Railway, so no CORS setup is needed.
